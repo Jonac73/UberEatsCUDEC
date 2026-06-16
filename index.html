@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>UberEatsCUDEC</title>
+  <title>COFFE MAKER</title>
   <!-- materialize icons, css & js -->
   <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,7 +15,7 @@
   <!-- Menu superior -->
   <nav class="z-depth-0">
     <div class="nav-wrapper container">
-      <a href="/">UberEatsCUDEC</span></a>
+      <a href="/">COFFE MAKER</span></a>
       <span class="right grey-text text-darken-1">
         <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
       </span>
@@ -57,12 +57,39 @@
         <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate">
         <label for="ingredients">Ingredientes</label>
       </div>
+      <div class="input-field">
+        <input placeholder="e.g. $10.99" id="cost" type="text" class="validate">
+        <label for="cost">Costo</label>
+      </div>
       <div class="input-field center">
         <button class="btn-small">Agregar</button>
       </div>
+      
     </form>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
+  </script>
+
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyC-_rZGZFjRR2clzdLMy3xLPks43ijZG4Q",
+  authDomain: "coffe-maker-2ed03.firebaseapp.com",
+  projectId: "coffe-maker-2ed03",
+  storageBucket: "coffe-maker-2ed03.firebasestorage.app",
+  messagingSenderId: "612801070417",
+  appId: "1:612801070417:web:93c59fbe055492ebcc7f70",
+  measurementId: "G-JP63VWSVNJ"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  </script>
+
   <script src="/js/index.js"></script>
+  <script src="/js/db.js"></script>
 </body>
 </html>
