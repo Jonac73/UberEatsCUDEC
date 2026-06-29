@@ -1,6 +1,4 @@
 
-console.log("DB.JS CARGADO");
-
 db.collection("PLATILLOS").onSnapshot((coleccion) => {
      coleccion.docChanges().forEach((registro) => {
         if (registro.type === "added") {

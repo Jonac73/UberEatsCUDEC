@@ -1,5 +1,3 @@
-console.log("INDEX.JS CARGADO");
-
 let contenido = "";
 document.addEventListener('DOMContentLoaded', function() {
   // nav menu
