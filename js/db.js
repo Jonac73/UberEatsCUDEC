@@ -1,4 +1,7 @@
-db.collection("platillos").onSnapshot((coleccion) => {
+
+console.log("DB.JS CARGADO");
+
+db.collection("PLATILLOS").onSnapshot((coleccion) => {
      coleccion.docChanges().forEach((registro) => {
         if (registro.type === "added") {
           MostrarPlatillo(registro.doc.data(), registro.doc.id);
@@ -21,7 +24,7 @@ db.collection("platillos").onSnapshot((coleccion) => {
       ingredientes: formularioAgregar.ingredients.value,
       precio: formularioAgregar.price.value
     }
-    db.collection("platillos").add(platilloNuevo)
+    db.collection("PLATILLOS").add(platilloNuevo)
     .catch((error) => {
         console.log(error);
         alert("Error al agregar el platillo");
@@ -36,6 +39,6 @@ db.collection("platillos").onSnapshot((coleccion) => {
     eliminarPlatillo.addEventListener("click", (e) => {
         if (e.target.tagName === 'I') {
             const id = e.target.getAttribute("data-id");
-            db.collection("platillos").doc(id).delete()
+            db.collection("PLATILLOS").doc(id).delete()
         }
 })

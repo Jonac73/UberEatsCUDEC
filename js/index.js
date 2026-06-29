@@ -1,3 +1,5 @@
+console.log("INDEX.JS CARGADO");
+
 let contenido = "";
 document.addEventListener('DOMContentLoaded', function() {
   // nav menu
@@ -19,7 +21,7 @@ function MostrarPlatillo(platillo, id) {
     ${platillo.ingredientes}
    </div>
    <div class='recipe-price'>
-    ${'$' + platillo.precio}
+    ${'$' + platillo.costo}
    </div>
    <div class='recipe-delete'>
         <i class='material-icons' data-id='${id}'>delete_outline</i>
