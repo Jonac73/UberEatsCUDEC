@@ -61,49 +61,50 @@
   </ul>
 
   <!-- content -->
-  <div class="container grey-text">
+  <div class="card">
+  <div class="card-content">
 
-    <div class="card">
-      <div class="card-content">
+    <span class="card-title center" style="font-size:2rem;">
+      Registro de Pedido
+    </span>
 
-        <span class="card-title center" style="font-size:2rem;">
-          Registro de Pedido
-        </span>
+    <form id="formPedido">
 
-        <div class="input-field">
-                    <select id="listaPlatillo" type="text">
-                      <option value="" disabled selected>Seleccione un platillo</option>
-                    </select>
-                    <label for="platillo">Platillo</label>
-                </div>
+      <div class="input-field">
+        <select id="listaPlatillo" name="listaPlatillo">
+          <option value="" disabled selected>Seleccione un platillo</option>
+        </select>
+        <label>Platillo</label>
+      </div>
 
+      <div class="input-field">
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="nombre">Nombre</label>
+      </div>
 
-        <div class="input-field">
-          <input type="text" id="nombre">
-          <label for="nombre">Nombre</label>
-        </div>
+      <div class="input-field">
+        <textarea id="direccion" name="direccion" class="materialize-textarea" required></textarea>
+        <label for="direccion">Dirección</label>
+      </div>
 
-        <div class="input-field">
-          <textarea id="direccion" class="materialize-textarea"></textarea>
-          <label for="direccion">Dirección</label>
-        </div>
+      <div class="center" style="margin-top:30px;">
 
-        <div class="center" style="margin-top:30px;">
-          <button class="btn orange waves-effect waves-light">
-            <i class="material-icons left">save</i>
-            Guardar
-          </button>
-
-          <button class="btn grey waves-effect waves-light">
-            <i class="material-icons left">cancel</i>
-            Cancelar
-          </button>
-        </div>
+        <button type="submit" class="btn orange waves-effect waves-light">
+          <i class="material-icons left">save</i>
+          Guardar
+        </button>
+        <a href="/" class="btn grey waves-effect waves-light">
+          <i class="material-icons left">arrow_back</i>
+          Cancelar
+        </a>
 
       </div>
-    </div>
+
+    </form>
 
   </div>
+</div>
+   
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

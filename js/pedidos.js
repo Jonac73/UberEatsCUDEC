@@ -25,7 +25,7 @@ formularioPedido.addEventListener("submit", (e) => {
         direccion: formularioPedido.direccion.value
     };
 
-    db.collection("pedidos").add(pedidoNuevo)
+    db.collection("PEDIDOS").add(pedidoNuevo)
     .then(() => {
         alert("Pedido realizado exitosamente");
         formularioPedido.reset();
