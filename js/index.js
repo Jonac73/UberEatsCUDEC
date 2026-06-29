@@ -34,7 +34,7 @@ function actualizarPlatillo(platillo, id) {
   let tarjeta = document.getElementById(`${id}`);
   tarjeta.querySelector(".recipe-title").innerHTML = platillo.nombre;
   tarjeta.querySelector(".recipe-ingredients").innerHTML = platillo.ingredientes;
-  tarjeta.querySelector(".recipe-price").innerHTML = '$' + platillo.precio;
+  tarjeta.querySelector(".recipe-price").innerHTML = '$' + platillo.costo;
 }
 
 const borrarPlatillo = (id) => {

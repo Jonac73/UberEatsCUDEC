@@ -11,7 +11,7 @@ db.collection("PLATILLOS").onSnapshot((datos) => {
 
  function agregarPlatillo(platillo, id) {
     contenidoPlatillo += `<option value='${id}'>
-    ${platillo.nombre} -  $${platillo.precio}
+    ${platillo.nombre} -  $${platillo.costo}
     </option>`;
     document.getElementById("listaPlatillo").innerHTML = contenidoPlatillo;
     }
