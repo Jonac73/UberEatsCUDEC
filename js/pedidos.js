@@ -35,3 +35,30 @@ formularioPedido.addEventListener("submit", (e) => {
         alert("Error al realizar el pedido");
     });
 });
+
+document.getElementById("btnObtenerDireccion").addEventListener("click", 
+    function(){
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(exito, error);
+        }
+        else{
+            alert("Geolocalización no soportada por el navegador");
+        }
+    })
+function error(error){
+    alert("Error al obtener la ubicación: " + error.message);
+}
+
+function exito(posicion){
+    alert(posicion.coords.latitude + " , " + posicion.coords.longitude);
+    let latitud = posicion.coords.latitude;
+    let longitud = posicion.coords.longitude;
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitud}&lon=${longitud}&format=json`, {
+        headers: {
+            'User-Agent': 'COFFEMAKER (jc734090@gmail.com)'
+        }
+    })
+    .then(response => response.json())
+    .then(data => alert(data.display_name))
+    .catch(error => console.error(error));
+}
