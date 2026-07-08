@@ -47,6 +47,7 @@ document.getElementById("btnObtenerDireccion").addEventListener("click",
     })
 function error(error){
     alert("Error al obtener la ubicación: " + error.message);
+    console.log
 }
 
 function exito(posicion){
@@ -59,6 +60,16 @@ function exito(posicion){
         }
     })
     .then(response => response.json())
-    .then(data => alert(data.display_name))
+    .then(data => {
+        let ciudad = data.address.city
+        let pais = data.address.country;
+        document.getElementById("direccion").innerHTML = `Ciudad: ${ciudad}, País: ${pais}`;
+        var map = L.map('mapa').setView([latitud, longitud], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        var marker = L.marker([latitud, longitud]).addTo(map);
+    })
     .catch(error => console.error(error));
 }

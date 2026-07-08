@@ -11,6 +11,21 @@
   <link type="text/css" href="/css/styles.css" rel="stylesheet">
   <script type="text/javascript" src="/js/materialize.min.js"></script>
 
+  <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" href="/css/styles.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+    crossorigin="" />  
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <style>
+        #mapa { height: 200px; margin-top: 10px; }
+        
+    </style>
+
   <style>
     .card{
       border-radius:12px;
@@ -47,7 +62,7 @@
   </nav>
 
   <!-- side nav -->
-  <ul id="side-menu" class="sidenav side-menu">
+  <ul id="side-menu" class="sidenav side-menu right">
     <li><a class="subheader">COFFEMAKER</a></li>
     <li><a href="/" class="waves-effect">Home</a></li>
     <li><a href="/pages/about.html" class="waves-effect">Acerca</a></li>
@@ -97,6 +112,7 @@
           <i class="material-icons left">location_on</i>
           Obtener dirección
         </button>
+        <div id="mapa" style="width: 100%; height: 300px;"></div>
         <a href="/" class="btn grey waves-effect waves-light">
           <i class="material-icons left">arrow_back</i>
           Cancelar
