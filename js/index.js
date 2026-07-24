@@ -8,24 +8,30 @@ document.addEventListener('DOMContentLoaded', function() {
   M.Sidenav.init(forms, {edge: 'left'});
 });
 
-function MostrarPlatillo(platillo, id) {
-  contenido = `
-  <div class='card-panel recipe white row ' id='${id}' data-id='${id}'>
-  <div class='recipe-details'>
-   <div class='recipe-title'>
-    ${platillo.nombre}
-   </div>
-   <div class='recipe-ingredients'>
-    ${platillo.ingredientes}
-   </div>
-   <div class='recipe-price'>
-    ${'$' + platillo.costo}
-   </div>
-   <div class='recipe-delete'>
-        <i class='material-icons' data-id='${id}'>delete_outline</i>
-      </div>
+function MostrarPlatillo(platillo, id){  
+  let fotoPlatillo = "img/platillo.png";
 
-  </div>
+if (platillo.imagen && platillo.imagen !== "") {
+    fotoPlatillo = platillo.imagen;
+}
+  contenido += `
+  <div class='card-panel recipe white row ' id='${id}' data-id='${id}'>
+  <img=" src="${fotoPlatillo}" height="100px" width="100px">
+    <div class='recipe-details'>
+    <div class='recipe-title'>
+      ${platillo.nombre}
+    </div>
+    <div class='recipe-ingredients'>
+      ${platillo.ingredientes}
+    </div>
+    <div class='recipe-price'>
+      ${'$' + platillo.costo}
+    </div>
+    <div class='recipe-delete'>
+          <i class='material-icons' data-id='${id}'>delete_outline</i>
+        </div>
+
+    </div>
   `;
   document.querySelector(".recipes").innerHTML += contenido;
 }
@@ -56,7 +62,44 @@ btnFoto.addEventListener('click', function(){
     video.srcObject = stream;
     video.play();
   })
-  .catch(function(err){
-    console.log("Error: " + err);
+  .catch(function(error){
+    console.log("Error: " + error);
   });
 })
+
+video.addEventListener('canplay', () => {
+ if (!streaming) {
+   height = video.videoHeight / (video.videoWidth/width);
+   video.setAttribute('width', width);
+   video.setAttribute('height', height);
+   canvas.setAttribute('width', width);
+   canvas.setAttribute('height', height);
+   streaming = true;
+ }
+});
+
+function tomarFoto() {
+  const context = canvas.getContext('2d');
+  if (width && height) {
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(video, 0, 0, width, height);
+    const fotoFinal = canvas.toDataURL('image/png');
+    foto.setAttribute('src', fotoFinal);
+    document.getElementById("foto").value = fotoFinal;
+  }
+  else{
+    limpiarFoto();
+  }
+}
+
+const btnTomarFoto = document.getElementById('btnTomarFoto');
+btnTomarFoto.addEventListener('click', tomarFoto);
+
+function limpiarFoto() {
+  const context = canvas.getContext('2d');
+  context.fillStyle = "#AAA";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  const data = canvas.toDataURL('image/png');
+  foto.setAttribute('src', data);
+}
