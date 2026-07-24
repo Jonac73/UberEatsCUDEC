@@ -6,15 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>COFFEMAKER - Pedidos</title>
 
-  <link type="text/css" href="css/materialize.min.css" rel="stylesheet">
+  <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-
-  <link type="text/css" href="css/materialize.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <link type="text/css" href="../css/styles.css" rel="stylesheet">
+  <script src="../js/materialize.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
     crossorigin="" />  
@@ -101,18 +96,18 @@
   </nav>
 
   <!-- side nav -->
-  <ul id="side-menu" class="sidenav side-menu right">
+ <ul id="side-menu" class="sidenav side-menu">
     <li><a class="subheader">COFFEMAKER</a></li>
-    <li><a href="/" class="waves-effect">Home</a></li>
-    <li><a href="pages/about.html" class="waves-effect">Acerca</a></li>
-    <li><a href="pages/pedidos.html" class="waves-effect">Pedidos</a></li>
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/pages/about.html">Acerca</a></li>
+    <li><a href="/pages/pedidos.html">Pedidos</a></li>
     <li><div class="divider"></div></li>
     <li>
-      <a href="pages/contact.html" class="waves-effect">
-        <i class="material-icons">mail_outline</i>Contact
-      </a>
+        <a href="/pages/contact.html">
+            <i class="material-icons">mail_outline</i>Contacto
+        </a>
     </li>
-  </ul>
+</ul>
 
   <!-- content -->
   <div class="card">
@@ -166,15 +161,17 @@
    
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
 
-      var sidenav = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(sidenav);
-
-      var selects = document.querySelectorAll('select');
-      M.FormSelect.init(selects);
-
+    const menus = document.querySelectorAll('.side-menu');
+    M.Sidenav.init(menus, {
+        edge: 'right'
     });
+
+    const selects = document.querySelectorAll('select');
+    M.FormSelect.init(selects);
+
+});
   </script>
 
   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
