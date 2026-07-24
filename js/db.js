@@ -32,6 +32,12 @@ db.collection("PLATILLOS").onSnapshot((coleccion) => {
     formularioAgregar.ingredients.value = "";
     formularioAgregar.price.value = "";
     alert("Platillo agregado exitosamente");
+
+    const sidenav = document.querySelector('#side-form');
+    const instancia = M.Sidenav.getInstance(sidenav);
+
+    instancia.close();
+    detenerCamara();
   });
 
   const eliminarPlatillo = document.querySelector(".recipes");
@@ -41,3 +47,14 @@ db.collection("PLATILLOS").onSnapshot((coleccion) => {
             db.collection("PLATILLOS").doc(id).delete()
         }
 })
+
+function detenerCamara() {
+
+    const stream = video.srcObject;
+
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        video.srcObject = null;
+    }
+
+}

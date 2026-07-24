@@ -1,11 +1,20 @@
 
-document.addEventListener('DOMContentLoaded', function() {
-  // nav menu
-  const menus = document.querySelectorAll('.side-menu');
-  M.Sidenav.init(menus, {edge: 'right'});
-  // add recipe form
-  const forms = document.querySelectorAll('.side-form');
-  M.Sidenav.init(forms, {edge: 'left'});
+document.addEventListener('DOMContentLoaded', function () {
+    const menus = document.querySelectorAll('.side-menu');
+    M.Sidenav.init(menus, { edge: 'right' });
+    const forms = document.querySelectorAll('.side-form');
+    M.Sidenav.init(forms, {
+        edge: 'left',
+        onOpenStart: function () {
+            document.getElementById("preview").src = "";
+            document.getElementById("preview").style.display = "none";
+            document.getElementById("foto").value = "";
+            iniciarCamara();
+        },
+        onCloseEnd: function () {
+            detenerCamara();
+        }
+    });
 });
 
 function MostrarPlatillo(platillo, id){
@@ -69,16 +78,23 @@ const canvas = document.getElementById('canvas');
 const foto = document.getElementById('foto');
 const btnFoto = document.getElementById('btnFoto');
 
-btnFoto.addEventListener('click', function(){
-  navigator.mediaDevices.getUserMedia({video: true, audio: false})
-  .then(function(stream){
-    video.srcObject = stream;
-    video.play();
-  })
-  .catch(function(error){
-    console.log("Error: " + error);
-  });
-})
+function iniciarCamara() {
+
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false
+    })
+    .then(function(stream){
+
+        video.srcObject = stream;
+        video.play();
+
+    })
+    .catch(function(error){
+        console.log("Error al abrir la cámara:", error);
+    });
+
+}
 
 video.addEventListener('canplay', () => {
  if (!streaming) {
@@ -92,18 +108,19 @@ video.addEventListener('canplay', () => {
 });
 
 function tomarFoto() {
-  const context = canvas.getContext('2d');
-  if (width && height) {
-    canvas.width = width;
-    canvas.height = height;
-    context.drawImage(video, 0, 0, width, height);
-    const fotoFinal = canvas.toDataURL('image/png');
-    document.getElementById("preview").src = fotoFinal;
-    document.getElementById("foto").value = fotoFinal;
-  }
-  else{
-    limpiarFoto();
-  }
+    const context = canvas.getContext('2d');
+    if (width && height) {
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(video, 0, 0, width, height);
+        const fotoFinal = canvas.toDataURL('image/png');
+        const preview = document.getElementById("preview");
+        preview.src = fotoFinal;
+        preview.style.display = "block";   // <-- ESTA LÍNEA FALTABA
+        document.getElementById("foto").value = fotoFinal;
+    } else {
+        limpiarFoto();
+    }
 }
 
 const btnTomarFoto = document.getElementById('btnTomarFoto');
