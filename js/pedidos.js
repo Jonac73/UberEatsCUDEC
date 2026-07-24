@@ -1,20 +1,25 @@
-let contenidoPlatillo = "";
+let mapa = null;
+let marcador = null;
 db.collection("PLATILLOS").onSnapshot((datos) => {
-     datos.docChanges().forEach((registro) => {
-        if (registro.type === "added") {
-            agregarPlatillo(registro.doc.data(), registro.doc.id);
-        }
-         });
-         var elems = document.querySelectorAll('select');
-         M.FormSelect.init(elems);
- });
+    const lista = document.getElementById("listaPlatillo");
+    lista.innerHTML = `
+        <option value="" disabled selected>
+            Seleccione un platillo
+        </option>
+    `;
+    datos.forEach((doc) => {
+        agregarPlatillo(doc.data(), doc.id);
+    });
+    M.FormSelect.init(lista);
+});
 
- function agregarPlatillo(platillo, id) {
-    contenidoPlatillo += `<option value='${id}'>
-    ${platillo.nombre} -  $${platillo.costo}
-    </option>`;
-    document.getElementById("listaPlatillo").innerHTML = contenidoPlatillo;
-    }
+function agregarPlatillo(platillo, id) {
+    const lista = document.getElementById("listaPlatillo");
+    const opcion = document.createElement("option");
+    opcion.value = id;
+    opcion.textContent = `${platillo.nombre} - $${platillo.costo}`;
+    lista.appendChild(opcion);
+}
 
 const formularioPedido = document.getElementById("formPedido");
 formularioPedido.addEventListener("submit", (e) => {
@@ -29,6 +34,16 @@ formularioPedido.addEventListener("submit", (e) => {
     .then(() => {
         alert("Pedido realizado exitosamente");
         formularioPedido.reset();
+        document.getElementById("direccion").value =
+        `Ciudad: ${ciudad}, País: ${pais}`;
+        M.textareaAutoResize(document.getElementById("direccion"));
+        M.updateTextFields();
+        M.updateTextFields();
+        if (mapa !== null) {
+            mapa.remove();
+            mapa = null;
+        }
+document.getElementById("mapa").innerHTML = "";
     })
     .catch((error) => {
         console.log(error);
@@ -64,12 +79,17 @@ function exito(posicion){
         let ciudad = data.address.city
         let pais = data.address.country;
         document.getElementById("direccion").innerHTML = `Ciudad: ${ciudad}, País: ${pais}`;
-        var map = L.map('mapa').setView([latitud, longitud], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var marker = L.marker([latitud, longitud]).addTo(map);
-    })
+        if (mapa !== null) {
+            mapa.remove();
+        }
+            mapa = L.map('mapa').setView([latitud, longitud], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(mapa);
+
+            marcador = L.marker([latitud, longitud]).addTo(mapa);
+        })
     .catch(error => console.error(error));
 }

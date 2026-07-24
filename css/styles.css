@@ -109,3 +109,7 @@ form .input-field{
 #salida button{
     align-self: center;
 }
+#mapa{
+    margin-top:20px;
+    margin-bottom:30px;
+}
