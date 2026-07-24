@@ -1,4 +1,4 @@
-let contenido = "";
+
 document.addEventListener('DOMContentLoaded', function() {
   // nav menu
   const menus = document.querySelectorAll('.side-menu');
@@ -8,32 +8,45 @@ document.addEventListener('DOMContentLoaded', function() {
   M.Sidenav.init(forms, {edge: 'left'});
 });
 
-function MostrarPlatillo(platillo, id){  
-  let fotoPlatillo = "img/platillo.png";
+function MostrarPlatillo(platillo, id){
 
-if (platillo.imagen && platillo.imagen !== "") {
-    fotoPlatillo = platillo.imagen;
-}
-  contenido += `
-  <div class='card-panel recipe white row ' id='${id}' data-id='${id}'>
-  <img=" src="${fotoPlatillo}" height="100px" width="100px">
-    <div class='recipe-details'>
-    <div class='recipe-title'>
-      ${platillo.nombre}
-    </div>
-    <div class='recipe-ingredients'>
-      ${platillo.ingredientes}
-    </div>
-    <div class='recipe-price'>
-      ${'$' + platillo.costo}
-    </div>
-    <div class='recipe-delete'>
-          <i class='material-icons' data-id='${id}'>delete_outline</i>
+    let fotoPlatillo = "img/platillo.png";
+
+    if (platillo.imagen && platillo.imagen !== "") {
+        fotoPlatillo = platillo.imagen;
+    }
+
+    const contenido = `
+        <div class="card-panel recipe" id="${id}" data-id="${id}">
+
+            <img src="${fotoPlatillo}" class="recipe-image">
+
+            <div class="recipe-details">
+
+                <div class="recipe-title">
+                    ${platillo.nombre}
+                </div>
+
+                <div class="recipe-ingredients">
+                    ${platillo.ingredientes}
+                </div>
+
+                <div class="recipe-price">
+                    $${platillo.costo}
+                </div>
+
+            </div>
+
+            <div class="recipe-delete">
+                <i class="material-icons" data-id="${id}">
+                    delete_outline
+                </i>
+            </div>
+
         </div>
+    `;
 
-    </div>
-  `;
-  document.querySelector(".recipes").innerHTML += contenido;
+    document.querySelector(".recipes").innerHTML += contenido;
 }
 
 function actualizarPlatillo(platillo, id) {
@@ -85,7 +98,7 @@ function tomarFoto() {
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
     const fotoFinal = canvas.toDataURL('image/png');
-    foto.setAttribute('src', fotoFinal);
+    document.getElementById("preview").src = fotoFinal;
     document.getElementById("foto").value = fotoFinal;
   }
   else{
