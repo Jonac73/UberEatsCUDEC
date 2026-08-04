@@ -81,7 +81,11 @@ const btnFoto = document.getElementById('btnFoto');
 function iniciarCamara() {
 
     navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: {
+            facingMode: {
+                ideal: "environment"
+            }
+        },
         audio: false
     })
     .then(function(stream){
