@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Food Ninja - Acerca de nosotros</title>
+    <title>COFFE MAKER - Acerca de nosotros</title>
 
     <!-- Materialize CSS -->
     <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Estilos de Food Ninja -->
+    <!-- Estilos de Coffe Maker -->
     <link type="text/css" href="../css/styles.css" rel="stylesheet">
 
     <!-- Materialize JS -->
@@ -24,8 +24,8 @@
 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Food Ninja">
-    <meta name="apple-mobile-web-app-title" content="Food Ninja">
+    <meta name="application-name" content="Coffe Maker">
+    <meta name="apple-mobile-web-app-title" content="Coffe Maker">
     <meta name="theme-color" content="#d26426">
 
     <!-- Icono -->
@@ -72,6 +72,12 @@
                 Acerca de
             </a>
         </li>
+        <li>
+            <a href="pedidos.html" class="waves-effect">
+                <i class="material-icons">shopping_cart</i>
+                Pedidos
+            </a>
+        <li>
 
         <li>
             <div class="divider"></div>
@@ -94,7 +100,7 @@
         <section class="section center">
 
             <img
-                src="../img/logo.png"
+                src="../img/icon-192x192.png"
                 alt="Logo Coffe Maker"
                 style="max-width: 180px; width: 100%; height: auto;"
             >
@@ -104,13 +110,13 @@
             </h4>
 
             <p class="grey-text">
-                Tu comida favorita, fácil y rápidamente.
+                Tu comida favorita, fácil y rápida.
             </p>
 
         </section>
 
 
-        <!-- SOBRE FOOD NINJA -->
+        <!-- SOBRE COFFE MAKER -->
         <section class="section">
 
             <div class="card">
@@ -128,7 +134,7 @@
                     </span>
 
                     <p class="grey-text text-darken-1 center">
-                        Food Ninja es una aplicación web diseñada para
+                        Coffe Maker es una aplicación web diseñada para
                         facilitar la búsqueda y selección de diferentes
                         platillos de comida.
                     </p>
@@ -202,9 +208,10 @@
                                 Realizar pedidos
                             </span>
 
-                            <p class="grey-text">
+                            <br class="grey-text">
                                 Selecciona tus platillos favoritos y registra
                                 tus pedidos fácilmente.
+                            </br>
                             </p>
 
                         </div>
@@ -231,7 +238,7 @@
 
                             <p class="grey-text">
                                 Obtén ayuda cuando tengas algún problema
-                                utilizando coffe maker.
+                                utilizando Coffe Maker.
                             </p>
 
                         </div>
@@ -265,7 +272,7 @@
                             </span>
 
                             <p class="grey-text text-darken-1">
-                                ¿Tienes algún problema utilizando coffe maker?
+                                ¿Tienes algún problema utilizando Coffe Maker?
                                 Nuestro equipo de soporte está disponible
                                 para ayudarte.
                             </p>
@@ -358,7 +365,18 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="../js/ui.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const menus = document.querySelectorAll('.side-menu');
+
+            M.Sidenav.init(menus, {
+                edge: 'right'
+            });
+
+        });
+    </script>
+  
 
 </body>
 
