@@ -1,84 +1,365 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Food Ninja</title>
-  <!-- materialize icons, css & js -->
-  <link type="text/css" href="css/materialize.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="CM">
-<meta name="apple-mobile-web-app-title" content="CM">
-<meta name="theme-color" content="#d26426">
-<meta name="msapplication-navbutton-color" content="#d26426">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Food Ninja - Acerca de nosotros</title>
 
-<link rel="icon" type="image/png" sizes="16x16" href="icon-16x16.png">
-<link rel="apple-touch-icon" type="image/png" sizes="16x16" href="icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="32x32" href="icon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="icon-48x48.png">
-<link rel="apple-touch-icon" type="image/png" sizes="48x48" href="icon-48x48.png">
-<link rel="icon" type="image/png" sizes="64x64" href="icon-64x64.png">
-<link rel="apple-touch-icon" type="image/png" sizes="64x64" href="icon-64x64.png">
-<link rel="icon" type="image/png" sizes="96x96" href="icon-96x96.png">
-<link rel="apple-touch-icon" type="image/png" sizes="96x96" href="icon-96x96.png">
-<link rel="icon" type="image/png" sizes="128x128" href="icon-128x128.png">
-<link rel="apple-touch-icon" type="image/png" sizes="128x128" href="icon-128x128.png">
-<link rel="icon" type="image/png" sizes="144x144" href="icon-144x144.png">
-<link rel="apple-touch-icon" type="image/png" sizes="144x144" href="icon-144x144.png">
-<link rel="icon" type="image/png" sizes="152x152" href="icon-152x152.png">
-<link rel="apple-touch-icon" type="image/png" sizes="152x152" href="icon-152x152.png">
-<link rel="icon" type="image/png" sizes="180x180" href="icon-180x180.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192x192-maskable.png">
-<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192x192-maskable.png">
-<link rel="icon" type="image/png" sizes="384x384" href="icon-384x384.png">
-<link rel="apple-touch-icon" type="image/png" sizes="384x384" href="icon-384x384.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512x512-maskable.png">
-<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icon-512x512-maskable.png">
+    <!-- Materialize CSS -->
+    <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Estilos de Food Ninja -->
+    <link type="text/css" href="../css/styles.css" rel="stylesheet">
+
+    <!-- Materialize JS -->
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+
+    <!-- PWA -->
+    <link rel="manifest" href="../manifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Food Ninja">
+    <meta name="apple-mobile-web-app-title" content="Food Ninja">
+    <meta name="theme-color" content="#d26426">
+
+    <!-- Icono -->
+    <link rel="icon" type="image/png" href="../icon-192x192.png">
 </head>
+
 <body class="grey lighten-4">
 
-  <!-- top nav -->
-  <nav class="z-depth-0">
-    <div class="nav-wrapper container">
-      <a href="/">Food<span>Ninja</span></a>
-      <span class="right grey-text text-darken-1">
-        <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
-      </span>
-    </div>
-  </nav>
+    <!-- BARRA SUPERIOR -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
 
-  <!-- side nav -->
-  <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">FOODNINJA</a></li>
-    <li><a href="/" class="waves-effect">Home</a></li>
-    <li><a href="pages/about.html" class="waves-effect">About</a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contact</a>
-    </li>
-  </ul>
+            <a href="../index.html">
+                COFFE<span>MAKER</span>
+            </a>
 
-  <!-- content -->
-  <div class="container grey-text">
-    <h5 class="center">About Food Ninja</h5>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, porro voluptatum illum veniam eaque sunt sit labore provident eligendi! Voluptate amet suscipit inventore unde maxime atque impedit officia nobis laboriosam!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatibus omnis, ea doloremque exercitationem id necessitatibus. Voluptatem officiis cupiditate commodi totam, hic laborum est ducimus amet iure, non dignissimos illo.</p>
-  </div>
+            <span class="right grey-text text-darken-1">
+                <i class="material-icons sidenav-trigger" data-target="side-menu">
+                    menu
+                </i>
+            </span>
 
-  <script src="js/ui.js"></script>
+        </div>
+    </nav>
+
+
+    <!-- MENÚ LATERAL -->
+    <ul id="side-menu" class="sidenav side-menu">
+
+        <li>
+            <a class="subheader">COFFE MAKER</a>
+        </li>
+
+        <li>
+            <a href="../index.html" class="waves-effect">
+                <i class="material-icons">home</i>
+                Inicio
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html" class="waves-effect">
+                <i class="material-icons">info</i>
+                Acerca de
+            </a>
+        </li>
+
+        <li>
+            <div class="divider"></div>
+        </li>
+
+        <li>
+            <a href="contact.html" class="waves-effect">
+                <i class="material-icons">mail_outline</i>
+                Contacto
+            </a>
+        </li>
+
+    </ul>
+
+
+    <!-- CONTENIDO -->
+    <main class="container">
+
+        <!-- LOGO -->
+        <section class="section center">
+
+            <img
+                src="../img/logo.png"
+                alt="Logo Coffe Maker"
+                style="max-width: 180px; width: 100%; height: auto;"
+            >
+
+            <h4 class="grey-text text-darken-2">
+                Acerca de Coffe Maker
+            </h4>
+
+            <p class="grey-text">
+                Tu comida favorita, fácil y rápidamente.
+            </p>
+
+        </section>
+
+
+        <!-- SOBRE FOOD NINJA -->
+        <section class="section">
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <div class="center">
+                        <i class="material-icons medium">
+                            restaurant
+                        </i>
+                    </div>
+
+                    <span class="card-title center">
+                        ¿Qué es Coffe Maker?
+                    </span>
+
+                    <p class="grey-text text-darken-1 center">
+                        Food Ninja es una aplicación web diseñada para
+                        facilitar la búsqueda y selección de diferentes
+                        platillos de comida.
+                    </p>
+
+                    <br>
+
+                    <p class="grey-text text-darken-1 center">
+                        Nuestra plataforma permite consultar los platillos
+                        disponibles, conocer sus precios y realizar pedidos
+                        de manera rápida, sencilla y accesible desde
+                        cualquier dispositivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FUNCIONES -->
+        <section class="section">
+
+            <h5 class="center grey-text text-darken-2">
+                ¿Qué puedes hacer con Coffe Maker?
+            </h5>
+
+            <br>
+
+            <div class="row">
+
+                <!-- PLATILLOS -->
+                <div class="col s12 m4">
+
+                    <div class="card center">
+
+                        <div class="card-content">
+
+                            <i class="material-icons large">
+                                restaurant_menu
+                            </i>
+
+                            <span class="card-title">
+                                Ver platillos
+                            </span>
+
+                            <p class="grey-text">
+                                Explora los diferentes platillos disponibles
+                                y consulta sus precios.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PEDIDOS -->
+                <div class="col s12 m4">
+
+                    <div class="card center">
+
+                        <div class="card-content">
+
+                            <i class="material-icons large">
+                                shopping_cart
+                            </i>
+
+                            <span class="card-title">
+                                Realizar pedidos
+                            </span>
+
+                            <p class="grey-text">
+                                Selecciona tus platillos favoritos y registra
+                                tus pedidos fácilmente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOPORTE -->
+                <div class="col s12 m4">
+
+                    <div class="card center">
+
+                        <div class="card-content">
+
+                            <i class="material-icons large">
+                                support_agent
+                            </i>
+
+                            <span class="card-title">
+                                Soporte
+                            </span>
+
+                            <p class="grey-text">
+                                Obtén ayuda cuando tengas algún problema
+                                utilizando coffe maker.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOPORTE Y CONTACTO -->
+        <section class="section">
+
+            <div class="row">
+
+                <!-- SOPORTE -->
+                <div class="col s12 m6">
+
+                    <div class="card">
+
+                        <div class="card-content">
+
+                            <span class="card-title">
+                                <i class="material-icons">
+                                    support_agent
+                                </i>
+                                Soporte
+                            </span>
+
+                            <p class="grey-text text-darken-1">
+                                ¿Tienes algún problema utilizando coffe maker?
+                                Nuestro equipo de soporte está disponible
+                                para ayudarte.
+                            </p>
+
+                            <br>
+
+                            <a
+                                href="mailto:soporte@coffemaker.com"
+                                class="btn waves-effect waves-light"
+                            >
+                                Contactar soporte
+
+                                <i class="material-icons right">
+                                    send
+                                </i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTACTO -->
+                <div class="col s12 m6">
+
+                    <div class="card">
+
+                        <div class="card-content">
+
+                            <span class="card-title">
+                                <i class="material-icons">
+                                    contact_mail
+                                </i>
+                                Contacto
+                            </span>
+
+                            <p class="grey-text text-darken-1">
+                                Si deseas obtener más información sobre
+                                Coffe Maker, puedes comunicarte con nosotros.
+                            </p>
+
+                            <br>
+
+                            <p>
+                                <i class="material-icons tiny">
+                                    email
+                                </i>
+                                contacto@coffemaker.com
+                            </p>
+
+                            <p>
+                                <i class="material-icons tiny">
+                                    phone
+                                </i>
+                                55 1234 5678
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+        <section class="section center">
+
+            <i class="material-icons medium">
+                fastfood
+            </i>
+
+            <h5 class="grey-text text-darken-2">
+                ¡Gracias por utilizar COFFE MAKER!
+            </h5>
+
+            <p class="grey-text">
+                Disfruta de una experiencia rápida y sencilla para
+                encontrar tus platillos favoritos.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/ui.js"></script>
+
 </body>
+
 </html>
