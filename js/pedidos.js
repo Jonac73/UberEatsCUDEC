@@ -1,9 +1,11 @@
 let mapa = null;
 let marcador = null;
 
+
 // ======================
 // CARGAR PLATILLOS
 // ======================
+
 db.collection("PLATILLOS").onSnapshot((datos) => {
 
     const lista = document.getElementById("listaPlatillo");
@@ -15,12 +17,19 @@ db.collection("PLATILLOS").onSnapshot((datos) => {
     `;
 
     datos.forEach((doc) => {
+
         agregarPlatillo(doc.data(), doc.id);
+
     });
 
     M.FormSelect.init(lista);
 
 });
+
+
+// ======================
+// AGREGAR PLATILLO
+// ======================
 
 function agregarPlatillo(platillo, id) {
 
@@ -29,92 +38,302 @@ function agregarPlatillo(platillo, id) {
     const opcion = document.createElement("option");
 
     opcion.value = id;
-    opcion.textContent = `${platillo.nombre} - $${platillo.costo}`;
+
+    opcion.textContent =
+        `${platillo.nombre} - $${platillo.costo}`;
 
     lista.appendChild(opcion);
 
 }
 
+
 // ======================
 // GUARDAR PEDIDO
 // ======================
 
-const formularioPedido = document.getElementById("formPedido");
+const formularioPedido =
+    document.getElementById("formPedido");
+
 
 formularioPedido.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
+
+    // ======================
+    // OBTENER DATOS
+    // ======================
+
+    const listaPlatillo =
+        document.getElementById("listaPlatillo");
+
+    const opcionSeleccionada =
+        listaPlatillo.options[listaPlatillo.selectedIndex];
+
+
     const pedidoNuevo = {
 
-        platillo: formularioPedido.listaPlatillo.value,
-        nombre: formularioPedido.nombre.value,
-        direccion: formularioPedido.direccion.value
+        platillo: listaPlatillo.value,
+
+        nombre:
+            document.getElementById("nombre").value,
+
+        direccion:
+            document.getElementById("direccion").value,
+
+        fecha:
+            new Date().toISOString()
 
     };
 
-    db.collection("PEDIDOS").add(pedidoNuevo)
 
-    .then(() => {
+    // ======================
+    // GUARDAR EN FIREBASE
+    // ======================
 
-        alert("Pedido realizado exitosamente");
+    db.collection("PEDIDOS")
+        .add(pedidoNuevo)
 
-        // Limpiar formulario
-        formularioPedido.reset();
+        .then((docRef) => {
 
-        // Reiniciar selector
-        const lista = document.getElementById("listaPlatillo");
-        lista.selectedIndex = 0;
-        M.FormSelect.init(lista);
+            console.log(
+                "Pedido guardado correctamente:",
+                docRef.id
+            );
 
-        // Limpiar dirección
-        document.getElementById("direccion").value = "";
-        M.textareaAutoResize(document.getElementById("direccion"));
-        M.updateTextFields();
 
-        // Eliminar mapa
-        if (mapa !== null) {
-            mapa.remove();
-            mapa = null;
-            marcador = null;
-        }
+            // ID DEL PEDIDO
+            const idPedido = docRef.id;
 
-        document.getElementById("mapa").innerHTML = "";
 
-    })
+            // ======================
+            // NOMBRE DEL PLATILLO
+            // ======================
 
-    .catch((error) => {
+            let nombrePlatillo =
+                opcionSeleccionada
+                    ? opcionSeleccionada.textContent
+                    : pedidoNuevo.platillo;
 
-        console.error(error);
-        alert("Error al realizar el pedido");
 
-    });
+            // ======================
+            // MOSTRAR MENSAJE
+            // ======================
+
+            alert("Pedido realizado exitosamente");
+
+
+            // ======================
+            // ELEMENTOS DEL QR
+            // ======================
+
+            const contenedorQR =
+                document.getElementById("codigoQR");
+
+            const contenedorPedido =
+                document.getElementById("qrPedido");
+
+            const numeroPedido =
+                document.getElementById("numeroPedido");
+
+
+            // Comprobar que existen
+            if (!contenedorQR ||
+                !contenedorPedido ||
+                !numeroPedido) {
+
+                console.error(
+                    "No se encontraron los elementos del QR en pedidos.html"
+                );
+
+                return;
+
+            }
+
+
+            // ======================
+            // LIMPIAR QR ANTERIOR
+            // ======================
+
+            contenedorQR.innerHTML = "";
+
+
+            // ======================
+            // MOSTRAR ID
+            // ======================
+
+            numeroPedido.textContent =
+                idPedido;
+
+
+            // ======================
+            // INFORMACIÓN DEL QR
+            // ======================
+
+            const datosQR =
+`COFFE MAKER
+PEDIDO: ${idPedido}
+CLIENTE: ${pedidoNuevo.nombre}
+PLATILLO: ${nombrePlatillo}
+DIRECCION: ${pedidoNuevo.direccion}`;
+
+
+            console.log(
+                "Datos del QR:",
+                datosQR
+            );
+
+
+            // ======================
+            // GENERAR QR
+            // ======================
+
+            if (typeof QRCode === "undefined") {
+
+                console.error(
+                    "La librería QRCode no está cargada."
+                );
+
+                alert(
+                    "El pedido se guardó, pero no se pudo generar el código QR."
+                );
+
+            } else {
+
+                new QRCode(
+                    contenedorQR,
+                    {
+                        text: datosQR,
+                        width: 220,
+                        height: 220,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel:
+                            QRCode.CorrectLevel.H
+                    }
+                );
+
+                // Mostrar QR
+                contenedorPedido.style.display =
+                    "block";
+
+
+                // Llevar automáticamente hacia el QR
+                contenedorPedido.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }
+
+
+            // ======================
+            // LIMPIAR FORMULARIO
+            // ======================
+
+            formularioPedido.reset();
+
+
+            // ======================
+            // REINICIAR SELECT
+            // ======================
+
+            const lista =
+                document.getElementById(
+                    "listaPlatillo"
+                );
+
+            lista.selectedIndex = 0;
+
+            M.FormSelect.init(lista);
+
+
+            // ======================
+            // LIMPIAR DIRECCIÓN
+            // ======================
+
+            const direccion =
+                document.getElementById(
+                    "direccion"
+                );
+
+            direccion.value = "";
+
+            M.textareaAutoResize(
+                direccion
+            );
+
+            M.updateTextFields();
+
+
+            // ======================
+            // IMPORTANTE:
+            // NO ELIMINAMOS EL MAPA
+            // ======================
+
+            /*
+                El mapa se mantiene visible
+                para que el QR aparezca debajo.
+            */
+
+        })
+
+        .catch((error) => {
+
+            console.error(
+                "ERROR AL GUARDAR PEDIDO:",
+                error
+            );
+
+            alert(
+                "Error al realizar el pedido"
+            );
+
+        });
 
 });
+
 
 // ======================
 // OBTENER UBICACIÓN
 // ======================
 
-document.getElementById("btnObtenerDireccion").addEventListener("click", function () {
+document
+    .getElementById("btnObtenerDireccion")
+    .addEventListener("click", function () {
 
-    if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(exito, error);
+        if (navigator.geolocation) {
 
-    } else {
+            navigator.geolocation.getCurrentPosition(
+                exito,
+                error
+            );
 
-        alert("Geolocalización no soportada por el navegador");
+        } else {
 
-    }
+            alert(
+                "Geolocalización no soportada por el navegador"
+            );
 
-});
+        }
+
+    });
+
+
+// ======================
+// ERROR UBICACIÓN
+// ======================
 
 function error(error) {
 
-    alert("Error al obtener la ubicación: " + error.message);
+    alert(
+        "Error al obtener la ubicación: " +
+        error.message
+    );
 
 }
+
 
 // ======================
 // UBICACIÓN EXITOSA
@@ -122,52 +341,141 @@ function error(error) {
 
 function exito(posicion) {
 
-    const latitud = posicion.coords.latitude;
-    const longitud = posicion.coords.longitude;
+    const latitud =
+        posicion.coords.latitude;
 
-    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitud}&lon=${longitud}`, {
-        headers: {
-            'User-Agent': 'COFFEMAKER'
+    const longitud =
+        posicion.coords.longitude;
+
+
+    fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitud}&lon=${longitud}`,
+        {
+            headers: {
+                "User-Agent": "COFFEMAKER"
+            }
         }
-    })
+    )
 
-    .then(response => response.json())
+    .then(response =>
+        response.json()
+    )
 
     .then(data => {
 
-        const ciudad = data.address.city ||
-                        data.address.town ||
-                        data.address.village ||
-                        "";
 
-        const pais = data.address.country || "";
+        // ======================
+        // OBTENER CIUDAD
+        // ======================
 
-        // Mostrar dirección
-        document.getElementById("direccion").value =
+        const ciudad =
+            data.address.city ||
+            data.address.town ||
+            data.address.village ||
+            "";
+
+
+        const pais =
+            data.address.country ||
+            "";
+
+
+        // ======================
+        // MOSTRAR DIRECCIÓN
+        // ======================
+
+        document.getElementById(
+            "direccion"
+        ).value =
             `Ciudad: ${ciudad}, País: ${pais}`;
 
-        M.textareaAutoResize(document.getElementById("direccion"));
+
+        M.textareaAutoResize(
+            document.getElementById(
+                "direccion"
+            )
+        );
+
+
         M.updateTextFields();
 
-        // Si ya existe un mapa, eliminarlo
+
+        // ======================
+        // ELIMINAR MAPA ANTERIOR
+        // ======================
+
         if (mapa !== null) {
+
             mapa.remove();
+
+            mapa = null;
+
+            marcador = null;
+
         }
 
-        // Crear mapa
-        mapa = L.map('mapa').setView([latitud, longitud], 13);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // ======================
+        // CREAR MAPA
+        // ======================
 
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap'
+        mapa =
+            L.map("mapa")
+                .setView(
+                    [
+                        latitud,
+                        longitud
+                    ],
+                    13
+                );
 
-        }).addTo(mapa);
 
-        marcador = L.marker([latitud, longitud]).addTo(mapa);
+        // ======================
+        // MAPA OPENSTREETMAP
+        // ======================
+
+        L.tileLayer(
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap"
+
+            }
+        )
+        .addTo(mapa);
+
+
+        // ======================
+        // MARCADOR
+        // ======================
+
+        marcador =
+            L.marker(
+                [
+                    latitud,
+                    longitud
+                ]
+            )
+            .addTo(mapa);
+
+
+        marcador.bindPopup(
+            "Ubicación del pedido"
+        )
+        .openPopup();
 
     })
 
-    .catch(error => console.error(error));
+    .catch(error => {
+
+        console.error(
+            "Error obteniendo dirección:",
+            error
+        );
+
+    });
 
 }

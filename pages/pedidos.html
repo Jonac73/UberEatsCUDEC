@@ -1,174 +1,835 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>COFFEMAKER - Pedidos</title>
 
-  <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="../css/styles.css" rel="stylesheet">
-  <script src="../js/materialize.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
-    crossorigin="" />  
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>COFFEMAKER - Pedidos</title>
+
+
+    <!-- =========================
+         MATERIALIZE
+    ========================== -->
+
+    <link type="text/css"
+          href="../css/materialize.min.css"
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <link type="text/css"
+          href="../css/styles.css"
+          rel="stylesheet">
+
+    <script src="../js/materialize.min.js"></script>
+
+
+    <!-- =========================
+         LEAFLET
+    ========================== -->
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="">
+    </script>
+
+
+    <!-- =========================
+         ESTILOS
+    ========================== -->
+
     <style>
-        #mapa { height: 200px; margin-top: 10px; }
-        
+
+        /* MAPA */
+
+        #mapa {
+            height: 200px;
+            margin-top: 10px;
+        }
+
+
+        /* TARJETA PRINCIPAL */
+
+        .card {
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+
+        /* BOTÓN NARANJA */
+
+        .btn.orange {
+            background: #ff8c1a !important;
+        }
+
+
+        /* INPUTS */
+
+        .input-field input:focus,
+        .input-field textarea:focus {
+            border-bottom: 1px solid #ff8c1a !important;
+            box-shadow: 0 1px 0 0 #ff8c1a !important;
+        }
+
+
+        .input-field input:focus + label,
+        .input-field textarea:focus + label {
+            color: #ff8c1a !important;
+        }
+
+
+        /* ==================================================
+           TARJETA DEL CÓDIGO QR
+        ================================================== */
+
+        #qrPedido {
+
+            max-width: 520px;
+
+            margin: 35px auto;
+
+            padding: 0;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.12);
+
+            border: 1px solid #eeeeee;
+
+        }
+
+
+        /* ENCABEZADO QR */
+
+        .qr-header {
+
+            background: linear-gradient(
+                135deg,
+                #ff8c1a,
+                #d26426
+            );
+
+            color: white;
+
+            padding: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            text-align: left;
+
+        }
+
+
+        .qr-header-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            min-width: 55px;
+
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, 0.18);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .qr-header-icon i {
+
+            font-size: 34px;
+
+            color: white;
+
+        }
+
+
+        .qr-header-text h5 {
+
+            margin: 0 0 5px 0;
+
+            font-weight: 600;
+
+            color: white;
+
+        }
+
+
+        .qr-header-text p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            opacity: 0.9;
+
+        }
+
+
+        /* CONTENIDO */
+
+        .qr-content {
+
+            padding: 28px 25px 20px 25px;
+
+        }
+
+
+        /* TEXTO */
+
+        .qr-instruction {
+
+            color: #777777;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* CONTENEDOR DEL QR */
+
+        .qr-box {
+
+            width: 250px;
+
+            height: 250px;
+
+            margin: 0 auto;
+
+            padding: 14px;
+
+            background: white;
+
+            border-radius: 16px;
+
+            border: 2px solid #eeeeee;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        #codigoQR {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        #codigoQR img {
+
+            display: block;
+
+            width: 220px;
+
+            height: 220px;
+
+        }
+
+
+        /* INFORMACIÓN DEL PEDIDO */
+
+        .qr-info {
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            background: #fff6ed;
+
+            border-radius: 12px;
+
+            border-left: 4px solid #ff8c1a;
+
+        }
+
+
+        .qr-info-title {
+
+            font-size: 11px;
+
+            color: #999999;
+
+            letter-spacing: 1px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        #numeroPedido {
+
+            display: block;
+
+            color: #d26426;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            word-break: break-all;
+
+        }
+
+
+        /* PIE DEL QR */
+
+        .qr-footer {
+
+            margin-top: 20px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #eeeeee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            color: #777777;
+
+            font-size: 13px;
+
+        }
+
+
+        .qr-footer i {
+
+            color: #ff8c1a;
+
+            font-size: 20px;
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            .qr-card {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .qr-box {
+                width: 240px;
+                height: 240px;
+            }
+
+            #codigoQR img {
+                width: 210px;
+                height: 210px;
+            }
+
+        }
+
     </style>
 
-  <style>
-    .card{
-      border-radius:12px;
-      margin-top:30px;
-    }
 
-    .btn.orange{
-      background:#ff8c1a !important;
-    }
+    <!-- =========================
+         PWA
+    ========================== -->
 
-    .input-field input:focus,
-    .input-field textarea:focus{
-      border-bottom:1px solid #ff8c1a !important;
-      box-shadow:0 1px 0 0 #ff8c1a !important;
-    }
+    <link rel="manifest" href="../manifest.json">
 
-    .input-field input:focus + label,
-    .input-field textarea:focus + label{
-      color:#ff8c1a !important;
-    }
-  </style>
-  <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable"
+          content="yes">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="CM">
-<meta name="apple-mobile-web-app-title" content="CM">
-<meta name="theme-color" content="#d26426">
-<meta name="msapplication-navbutton-color" content="#d26426">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable"
+          content="yes">
 
-<link rel="manifest" href="/manifest.json">
+    <meta name="application-name"
+          content="CM">
 
-<link rel="icon" type="image/png" href="/img/icon-192x192.png">
-<link rel="apple-touch-icon" href="/img/icon-192x192.png">
+    <meta name="apple-mobile-web-app-title"
+          content="CM">
+
+    <meta name="theme-color"
+          content="#d26426">
+
+    <meta name="msapplication-navbutton-color"
+          content="#d26426">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent">
+
+
+    <!-- ICONOS -->
+
+    <link rel="icon"
+          type="image/png"
+          href="../img/icon-192x192.png">
+
+    <link rel="apple-touch-icon"
+          href="../img/icon-192x192.png">
+
 </head>
+
 
 <body class="grey lighten-4">
 
-  <!-- top nav -->
-  <nav class="z-depth-0">
-    <div class="nav-wrapper container">
-      <a href="../index.html">COFFE<span>MAKER</span></a>
-      <span class="right grey-text text-darken-1">
-        <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
-      </span>
+
+    <!-- =========================
+         BARRA SUPERIOR
+    ========================== -->
+
+    <nav class="z-depth-0">
+
+        <div class="nav-wrapper container">
+
+            <a href="../index.html">
+                COFFE<span>MAKER</span>
+            </a>
+
+            <span class="right grey-text text-darken-1">
+
+                <i class="material-icons sidenav-trigger"
+                   data-target="side-menu">
+                    menu
+                </i>
+
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MENÚ LATERAL
+    ========================== -->
+
+    <ul id="side-menu"
+        class="sidenav side-menu">
+
+        <li>
+            <a class="subheader">
+                COFFEMAKER
+            </a>
+        </li>
+
+        <li>
+
+            <a href="../index.html"
+               class="waves-effect">
+
+                <i class="material-icons">
+                    home
+                </i>
+
+                Inicio
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="about.html"
+               class="waves-effect">
+
+                <i class="material-icons">
+                    info
+                </i>
+
+                Acerca de
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="pedidos.html"
+               class="waves-effect">
+
+                <i class="material-icons">
+                    shopping_cart
+                </i>
+
+                Pedidos
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <div class="divider"></div>
+
+        </li>
+
+        <li>
+
+            <a href="contact.html"
+               class="waves-effect">
+
+                <i class="material-icons">
+                    mail_outline
+                </i>
+
+                Contacto
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <!-- =========================
+         FORMULARIO
+    ========================== -->
+
+    <div class="card">
+
+        <div class="card-content">
+
+            <span class="card-title center"
+                  style="font-size:2rem;">
+
+                Registro de Pedido
+
+            </span>
+
+
+            <form id="formPedido">
+
+
+                <!-- PLATILLO -->
+
+                <div class="input-field">
+
+                    <select id="listaPlatillo"
+                            name="listaPlatillo">
+
+                        <option value=""
+                                disabled
+                                selected>
+
+                            Seleccione un platillo
+
+                        </option>
+
+                    </select>
+
+                    <label>
+                        Platillo
+                    </label>
+
+                </div>
+
+
+                <!-- NOMBRE -->
+
+                <div class="input-field">
+
+                    <input type="text"
+                           id="nombre"
+                           name="nombre"
+                           required>
+
+                    <label for="nombre">
+                        Nombre
+                    </label>
+
+                </div>
+
+
+                <!-- DIRECCIÓN -->
+
+                <div class="input-field">
+
+                    <textarea id="direccion"
+                              name="direccion"
+                              class="materialize-textarea"
+                              required>
+                    </textarea>
+
+                    <label for="direccion">
+                        Dirección
+                    </label>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="center"
+                     style="margin-top:30px;">
+
+                    <button type="submit"
+                            class="btn orange waves-effect waves-light">
+
+                        <i class="material-icons left">
+                            save
+                        </i>
+
+                        Guardar
+
+                    </button>
+
+
+                    <button type="button"
+                            id="btnObtenerDireccion"
+                            class="btn grey waves-effect waves-light">
+
+                        <i class="material-icons left">
+                            location_on
+                        </i>
+
+                        Obtener dirección
+
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     MAPA
+                ========================== -->
+
+                <div id="mapa"
+                     style="width:100%;
+                            height:300px;
+                            margin-top:20px;
+                            margin-bottom:20px;">
+                </div>
+
+
+                <!-- =========================
+                     TARJETA QR
+                ========================== -->
+
+                <div id="qrPedido"
+                     style="display:none;">
+
+
+                    <!-- ENCABEZADO -->
+
+                    <div class="qr-header">
+
+                        <div class="qr-header-icon">
+
+                            <i class="material-icons">
+                                qr_code_2
+                            </i>
+
+                        </div>
+
+
+                        <div class="qr-header-text">
+
+                            <h5>
+                                ¡Pedido registrado!
+                            </h5>
+
+                            <p>
+                                Tu pedido fue guardado correctamente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTENIDO -->
+
+                    <div class="qr-content center">
+
+
+                        <p class="qr-instruction">
+
+                            Escanea este código QR
+                            con la cámara de tu teléfono
+                            para consultar los datos de tu pedido.
+
+                        </p>
+
+
+                        <!-- QR -->
+
+                        <div class="qr-box">
+
+                            <div id="codigoQR"></div>
+
+                        </div>
+
+
+                        <!-- CÓDIGO -->
+
+                        <div class="qr-info">
+
+                            <div class="qr-info-title">
+
+                                CÓDIGO DEL PEDIDO
+
+                            </div>
+
+                            <span id="numeroPedido">
+                            </span>
+
+                        </div>
+
+
+                        <!-- PIE -->
+
+                        <div class="qr-footer">
+
+                            <i class="material-icons">
+                                qr_code_scanner
+                            </i>
+
+                            <span>
+                                Escanea el código para ver
+                                la información del pedido
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CANCELAR -->
+
+                <div class="center"
+                     style="margin-top:20px;">
+
+                    <a href="../index.html"
+                       class="btn grey waves-effect waves-light">
+
+                        <i class="material-icons left">
+                            arrow_back
+                        </i>
+
+                        Cancelar
+
+                    </a>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
     </div>
-  </nav>
 
-  <!-- side nav -->
- <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">COFFEMAKER</a></li>
-    <li><a href="../index.html" class="waves-effect">
-      <i class="material-icons">home</i>
-      Inicio
-    </a></li>
-    <li><a href="pages/about.html" class="waves-effect">
-      <i class="material-icons">info</i>
-      Acerca de
-    </a></li>
-    <li><a href="pages/pedidos.html" class="waves-effect">
-      <i class="material-icons">shopping_cart</i>
-      Pedidos
-    </a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contacto</a>
-    </li>
-</ul>
 
-  <!-- content -->
-  <div class="card">
-  <div class="card-content">
+    <!-- =========================
+         LIBRERÍA QR
+    ========================== -->
 
-    <span class="card-title center" style="font-size:2rem;">
-      Registro de Pedido
-    </span>
-
-    <form id="formPedido">
-
-      <div class="input-field">
-        <select id="listaPlatillo" name="listaPlatillo">
-          <option value="" disabled selected>Seleccione un platillo</option>
-        </select>
-        <label>Platillo</label>
-      </div>
-
-      <div class="input-field">
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="nombre">Nombre</label>
-      </div>
-
-      <div class="input-field">
-        <textarea id="direccion" name="direccion" class="materialize-textarea" required></textarea>
-        <label for="direccion">Dirección</label>
-      </div>
-
-     <div class="center" style="margin-top:30px;">
-
-    <button type="submit" class="btn orange waves-effect waves-light">
-        <i class="material-icons left">save</i>
-        Guardar
-    </button>
-
-    <button type="button" id="btnObtenerDireccion" class="btn grey waves-effect waves-light">
-        <i class="material-icons left">location_on</i>
-        Obtener dirección
-    </button>
-
-  </div>
-  <div id="mapa" style="width:100%; height:300px; margin-top:20px; margin-bottom:20px;"></div>
-  <div class="center">
-    <a href="../index.html" class="btn grey waves-effect waves-light">
-        <i class="material-icons left">arrow_back</i>
-        Cancelar
-    </a>
-  </div>
-
-    </form>
-
-  </div>
-</div>
-   
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-
-    const menus = document.querySelectorAll('.side-menu');
-    M.Sidenav.init(menus, {
-        edge: 'right'
-    });
-
-    const selects = document.querySelectorAll('select');
-    M.FormSelect.init(selects);
-
-});
-  </script>
-
-  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
-  </script>
-
-  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
     </script>
 
- 
-<script src="../js/firebase.js"></script>
-<script src="../js/pedidos.js"></script>
+
+    <!-- =========================
+         MATERIALIZE
+    ========================== -->
+
+    <script>
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                const menus =
+                    document.querySelectorAll(
+                        '.side-menu'
+                    );
+
+                M.Sidenav.init(
+                    menus,
+                    {
+                        edge: 'right'
+                    }
+                );
+
+
+                const selects =
+                    document.querySelectorAll(
+                        'select'
+                    );
+
+                M.FormSelect.init(selects);
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================== -->
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
+    </script>
+
+
+    <script src="../js/firebase.js">
+    </script>
+
+
+    <!-- =========================
+         PEDIDOS
+    ========================== -->
+
+    <script src="../js/pedidos.js">
+    </script>
+
 
 </body>
+
 </html>
