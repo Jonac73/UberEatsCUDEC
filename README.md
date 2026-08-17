@@ -195,3 +195,93 @@ COFFEMAKER/
 │   └── icon-512x512.png
 │
 └── README.md
+
+# 8. Base de datos
+
+## Motor utilizado
+
+La aplicación utiliza **Firebase Firestore** como sistema de almacenamiento de datos. Firestore es una base de datos NoSQL en la nube que permite almacenar y consultar la información de los platillos y pedidos de la aplicación.
+
+## Colecciones utilizadas
+
+### 1. PLATILLOS
+
+La colección `PLATILLOS` almacena la información de los platillos disponibles en Coffe Maker.
+
+Los principales datos almacenados son:
+
+* **nombre:** Nombre del platillo.
+* **costo:** Precio del platillo.
+* **ingredientes:** Ingredientes que contiene el platillo.
+* **imagen:** Información relacionada con la imagen del platillo.
+
+### 2. PEDIDOS
+
+La colección `PEDIDOS` almacena los pedidos realizados por los usuarios.
+
+Los principales datos almacenados son:
+
+* **platillo:** Identificador del platillo seleccionado.
+* **nombre:** Nombre del cliente que realiza el pedido.
+* **direccion:** Dirección proporcionada para el pedido.
+* **fecha:** Fecha y hora en la que se registra el pedido.
+
+Cada pedido cuenta además con un **identificador único generado automáticamente por Firebase Firestore**, el cual es utilizado por la aplicación para generar el código QR del pedido.
+
+## Estructura general
+
+```text
+Firestore
+│
+├── PLATILLOS
+│   ├── nombre
+│   ├── costo
+│   ├── ingredientes
+│   └── imagen
+│
+└── PEDIDOS
+    ├── platillo
+    ├── nombre
+    ├── direccion
+    └── fecha
+```
+# 9. Licencia
+
+Este proyecto fue desarrollado exclusivamente con **fines académicos** como parte de la carrera de **Ingeniería en Sistemas Computacionales** en la **Universidad Multicultural CUDEC**.
+
+## Licencia MIT
+
+Se utiliza la **Licencia MIT**, permitiendo el uso, copia, modificación y distribución del código del proyecto, siempre que se conserve el aviso de copyright y la licencia correspondiente.
+
+```text
+MIT License
+
+Copyright (c) 2026 Jonathan Alejandro Castro De Zamacona
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files, to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
+
+**Autor:** Jonathan Alejandro Castro De Zamacona
+
+**Carrera:** Ingeniería en Sistemas Computacionales
+
+**Institución:** Universidad Multicultural CUDEC
+
+**Año:** 2026
+
