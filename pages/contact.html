@@ -1,92 +1,319 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Food Ninja</title>
-  <!-- materialize icons, css & js -->
-  <link type="text/css" href="css/materialize.min.css" rel="stylesheet">
+
+  <title>COFFEMAKER - Contacto</title>
+
+  <!-- Materialize -->
+  <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <link rel="manifest" href="manifest.json">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="CM">
-<meta name="apple-mobile-web-app-title" content="CM">
-<meta name="theme-color" content="#d26426">
-<meta name="msapplication-navbutton-color" content="#d26426">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Estilos de COFFEMAKER -->
+  <link type="text/css" href="../css/styles.css" rel="stylesheet">
 
-<link rel="icon" type="image/png" sizes="16x16" href="icon-16x16.png">
-<link rel="apple-touch-icon" type="image/png" sizes="16x16" href="icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="32x32" href="icon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="icon-48x48.png">
-<link rel="apple-touch-icon" type="image/png" sizes="48x48" href="icon-48x48.png">
-<link rel="icon" type="image/png" sizes="64x64" href="icon-64x64.png">
-<link rel="apple-touch-icon" type="image/png" sizes="64x64" href="icon-64x64.png">
-<link rel="icon" type="image/png" sizes="96x96" href="icon-96x96.png">
-<link rel="apple-touch-icon" type="image/png" sizes="96x96" href="icon-96x96.png">
-<link rel="icon" type="image/png" sizes="128x128" href="icon-128x128.png">
-<link rel="apple-touch-icon" type="image/png" sizes="128x128" href="icon-128x128.png">
-<link rel="icon" type="image/png" sizes="144x144" href="icon-144x144.png">
-<link rel="apple-touch-icon" type="image/png" sizes="144x144" href="icon-144x144.png">
-<link rel="icon" type="image/png" sizes="152x152" href="icon-152x152.png">
-<link rel="apple-touch-icon" type="image/png" sizes="152x152" href="icon-152x152.png">
-<link rel="icon" type="image/png" sizes="180x180" href="icon-180x180.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192x192-maskable.png">
-<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="icon-192x192-maskable.png">
-<link rel="icon" type="image/png" sizes="384x384" href="icon-384x384.png">
-<link rel="apple-touch-icon" type="image/png" sizes="384x384" href="icon-384x384.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512x512-maskable.png">
-<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icon-512x512-maskable.png">
+  <script type="text/javascript" src="../js/materialize.min.js"></script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="../manifest.json">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="CM">
+  <meta name="apple-mobile-web-app-title" content="CM">
+  <meta name="theme-color" content="#d26426">
+  <meta name="msapplication-navbutton-color" content="#d26426">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Iconos -->
+  <link rel="icon" type="image/png" sizes="16x16" href="../icon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../icon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../icon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../icon-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../icon-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="../icon-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="../icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="../icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="../icon-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../icon-512x512.png">
 
 </head>
+
 <body class="grey lighten-4">
 
-  <!-- top nav -->
+  <!-- Menú superior -->
   <nav class="z-depth-0">
     <div class="nav-wrapper container">
-      <a href="/">Food<span>Ninja</span></a>
+
+      <!-- Regresar al inicio -->
+      <a href="../index.html">
+        COFFE<span>MAKER</span>
+      </a>
+
       <span class="right grey-text text-darken-1">
-        <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+        <i class="material-icons sidenav-trigger"
+           data-target="side-menu">
+          menu
+        </i>
       </span>
+
     </div>
   </nav>
 
-  <!-- side nav -->
+
+  <!-- Menú lateral -->
   <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">FOODNINJA</a></li>
-    <li><a href="/" class="waves-effect">Home</a></li>
-    <li><a href="pages/about.html" class="waves-effect">About</a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contact</a>
+
+    <li>
+      <a class="subheader">COFFEMAKER</a>
     </li>
+
+    <!-- Inicio -->
+    <li>
+      <a href="../index.html" class="waves-effect">
+        <i class="material-icons">home</i>
+        Inicio
+      </a>
+    </li>
+
+    <!-- Acerca de -->
+    <li>
+      <a href="about.html" class="waves-effect">
+        <i class="material-icons">info</i>
+        Acerca de
+      </a>
+    </li>
+
+    <!-- Pedidos -->
+    <li>
+      <a href="pedidos.html" class="waves-effect">
+        <i class="material-icons">shopping_cart</i>
+        Pedidos
+      </a>
+    </li>
+
+    <li>
+      <div class="divider"></div>
+    </li>
+
+    <!-- Contacto -->
+    <li>
+      <a href="contact.html" class="waves-effect">
+        <i class="material-icons">mail_outline</i>
+        Contacto
+      </a>
+    </li>
+
   </ul>
 
-  <!-- content -->
-  <div class="container grey-text">
-    <h5 class="center">Contact Us</h5>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, porro voluptatum illum veniam eaque sunt sit labore provident eligendi! Voluptate amet suscipit inventore unde maxime atque impedit officia nobis laboriosam!</p>
-    <div class="divider"></div>
-    <h6>Find us at:</h6>
-    <ul>
-      <li>123 Spicy Noodle Road</li>
-      <li>Manchester, UK</li>
-    </ul>
-  </div>
 
-  <script src="js/ui.js"></script>
-  <script src="js/index.js"></script>
-  <script src="js/ui.js"></script>
+  <!-- Contenido -->
+  <main class="container">
+
+    <div class="section">
+
+      <h5 class="center grey-text text-darken-2">
+        Contacta con COFFEMAKER
+      </h5>
+
+      <p class="center grey-text text-darken-1">
+        ¿Tienes alguna duda, sugerencia o comentario?
+        Nos gustaría saber tu opinión.
+      </p>
+
+      <div class="divider"></div>
+
+      <br>
+
+      <!-- Información de contacto -->
+      <div class="row">
+
+        <div class="col s12 m4 center">
+
+          <i class="material-icons large deep-orange-text">
+            local_cafe
+          </i>
+
+          <h6 class="grey-text text-darken-2">
+            COFFEMAKER
+          </h6>
+
+          <p class="grey-text">
+            Tu espacio para disfrutar y descubrir
+            deliciosas opciones de café y alimentos.
+          </p>
+
+        </div>
+
+
+        <div class="col s12 m4 center">
+
+          <i class="material-icons large deep-orange-text">
+            email
+          </i>
+
+          <h6 class="grey-text text-darken-2">
+            Correo electrónico
+          </h6>
+
+          <p class="grey-text">
+            contacto@coffemaker.com
+          </p>
+
+        </div>
+
+
+        <div class="col s12 m4 center">
+
+          <i class="material-icons large deep-orange-text">
+            location_on
+          </i>
+
+          <h6 class="grey-text text-darken-2">
+            Ubicación
+          </h6>
+
+          <p class="grey-text">
+            Ciudad de México, México
+          </p>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="divider"></div>
+
+      <br>
+
+
+      <!-- Formulario de contacto -->
+      <div class="row">
+
+        <div class="col s12 m8 offset-m2">
+
+          <h6 class="center grey-text text-darken-2">
+            Envíanos un mensaje
+          </h6>
+
+          <form>
+
+            <div class="input-field">
+
+              <i class="material-icons prefix">
+                person
+              </i>
+
+              <input
+                id="nombre"
+                type="text"
+                class="validate"
+                required>
+
+              <label for="nombre">
+                Nombre
+              </label>
+
+            </div>
+
+
+            <div class="input-field">
+
+              <i class="material-icons prefix">
+                email
+              </i>
+
+              <input
+                id="correo"
+                type="email"
+                class="validate"
+                required>
+
+              <label for="correo">
+                Correo electrónico
+              </label>
+
+            </div>
+
+
+            <div class="input-field">
+
+              <i class="material-icons prefix">
+                subject
+              </i>
+
+              <input
+                id="asunto"
+                type="text"
+                class="validate"
+                required>
+
+              <label for="asunto">
+                Asunto
+              </label>
+
+            </div>
+
+
+            <div class="input-field">
+
+              <i class="material-icons prefix">
+                message
+              </i>
+
+              <input
+                id="mensaje"
+                class="materialize-textarea"
+                required>
+              
+
+              <label for="mensaje">
+                Mensaje
+              </label>
+
+            </div>
+
+
+            <div class="center">
+
+              <button
+                type="submit"
+                class="btn waves-effect waves-light">
+
+                Enviar mensaje
+
+                <i class="material-icons right">
+                  send
+                </i>
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- JavaScript -->
+  <script src="../js/materialize.min.js"></script>
+
+  <script src="../js/ui.js"></script>
+
+  <script src="../js/index.js"></script>
+
 </body>
+
 </html>
