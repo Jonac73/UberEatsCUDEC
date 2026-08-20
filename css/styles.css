@@ -73,3 +73,63 @@ input{
 form .input-field{
   margin-top: 30px;
 }
+
+
+.about-container {
+    max-width: 700px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.about-container .card-panel {
+    border-radius: 12px;
+    padding: 35px;
+}
+
+.app-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+}
+
+.app-logo i {
+    font-size: 55px;
+    color: var(--title);
+}
+
+.app-name {
+    color: var(--title);
+    font-weight: bold;
+}
+
+.version {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.about-container h6 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .about-container {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    .about-container .card-panel {
+        padding: 25px 18px;
+    }
+
+}

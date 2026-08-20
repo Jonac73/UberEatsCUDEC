@@ -1,90 +1,450 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>RappiEmma</title>
-  <!-- materialize icons, css & js -->
-  <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="/css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="/js/materialize.min.js"></script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge">
+
+    <title>RappiEmma 2.4.1</title>
+
+    <!-- Materialize CSS -->
+    <link
+        type="text/css"
+        href="css/materialize.min.css"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <!-- Estilos propios -->
+    <link
+        type="text/css"
+        href="css/styles.css"
+        rel="stylesheet">
+
+    <!-- Materialize JS -->
+    <script
+        type="text/javascript"
+        src="js/materialize.min.js">
+    </script>
+
+    <!-- Leaflet JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
 </head>
+
+
 <body class="grey lighten-4">
 
-  <!-- Menu superior -->
-  <nav class="z-depth-0">
-    <div class="nav-wrapper container">
-      <a href="/">RappiEmma</span></a>
-      <span class="right grey-text text-darken-1">
-        <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
-      </span>
+    <!-- ==========================================
+         MENÚ SUPERIOR
+         ========================================== -->
+
+    <nav class="z-depth-0">
+
+        <div class="nav-wrapper container">
+
+            <a href="index.html">
+                RappiEmma
+            </a>
+
+            <span class="right grey-text text-darken-1">
+
+                <i
+                    class="material-icons sidenav-trigger"
+                    data-target="side-menu">
+                    menu
+                </i>
+
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================
+         MENÚ LATERAL
+         ========================================== -->
+
+    <ul
+        id="side-menu"
+        class="sidenav side-menu">
+
+        <li>
+
+            <a class="subheader">
+                RappiEmma
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="index.html"
+                class="waves-effect">
+
+                <i class="material-icons">
+                    home
+                </i>
+
+                Inicio
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="pages/about.html"
+                class="waves-effect">
+
+                <i class="material-icons">
+                    info
+                </i>
+
+                Acerca de
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <div class="divider"></div>
+
+        </li>
+
+        <li>
+
+            <a
+                href="pages/contact.html"
+                class="waves-effect">
+
+                <i class="material-icons">
+                    mail_outline
+                </i>
+
+                Contacto
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <!-- ==========================================
+         LISTA DE PLATILLOS
+         ========================================== -->
+
+    <main>
+
+        <div class="recipes container grey-text text-darken-1">
+
+            <!-- Los platillos aparecerán aquí -->
+
+        </div>
+
+
+        <!-- ======================================
+             REGISTRAR PEDIDO
+             ====================================== -->
+
+        <div class="container pedido-panel">
+
+            <div class="card-panel">
+
+                <h5 class="center">
+                    Registrar pedido
+                </h5>
+
+
+                <div
+                    id="pedidoSeleccionado"
+                    class="pedido-seleccionado">
+
+                    <p class="center grey-text">
+
+                        Selecciona un platillo para comenzar.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Nombre del pedido -->
+
+                <div class="input-field">
+
+                    <input
+                        id="pedidoNombre"
+                        type="text"
+                        placeholder="Nombre del pedido">
+
+                    <label for="pedidoNombre">
+                        Pedido
+                    </label>
+
+                </div>
+
+
+                <!-- ==================================
+                     UBICACIÓN
+                     ================================== -->
+
+                <div class="center">
+
+                    <button
+                        id="btnUbicacion"
+                        type="button"
+                        class="btn">
+
+                        <i class="material-icons left">
+                            location_on
+                        </i>
+
+                        Obtener ubicación
+
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="ubicacionTexto"
+                    class="center grey-text">
+
+                    Ubicación no registrada
+
+                </p>
+
+
+                <!-- ==================================
+                     MAPA
+                     ================================== -->
+
+                <div class="mapa-container">
+
+                    <div id="mapa"></div>
+
+                </div>
+
+
+                <!-- ==================================
+                     FOTOGRAFÍA
+                     ================================== -->
+
+                <div class="foto-container center">
+
+                    <label
+                        for="fotoPedido"
+                        class="btn">
+
+                        <i class="material-icons left">
+                            photo_camera
+                        </i>
+
+                        Tomar fotografía
+
+                    </label>
+
+                    <input
+                        id="fotoPedido"
+                        type="file"
+                        accept="image/*"
+                        capture="environment">
+
+
+                    <img
+                        id="previewFoto"
+                        class="preview-foto"
+                        alt="Vista previa de la fotografía">
+
+                </div>
+
+
+                <!-- ==================================
+                     GUARDAR
+                     ================================== -->
+
+                <div class="center">
+
+                    <button
+                        id="btnGuardarPedido"
+                        type="button"
+                        class="btn-large">
+
+                        <i class="material-icons left">
+                            save
+                        </i>
+
+                        Guardar pedido
+
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="estadoPedido"
+                    class="center estado-pedido">
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================
+         BOTÓN AGREGAR
+         ========================================== -->
+
+    <div class="center">
+
+        <a
+            class="btn-floating btn-large add-btn sidenav-trigger"
+            data-target="side-form">
+
+            <i class="material-icons">
+                add
+            </i>
+
+        </a>
+
     </div>
-  </nav>
 
-  <!-- Menu lateral -->
-  <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">RappiEmma</a></li>
-    <li><a href="/" class="waves-effect">Inicio</a></li>
-    <li><a href="/pages/about.html" class="waves-effect">Acerca</a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="/pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contacto</a>
-    </li>
-  </ul>
 
-  <!-- Lista de platillos -->
-  <div class="recipes container grey-text text-darken-1">
-    
-  </div>
+    <!-- ==========================================
+         FORMULARIO AGREGAR PLATILLO
+         ========================================== -->
 
-  <div class="center">
-    <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
-      <i class="material-icons">add</i>
-    </a>
-  </div>
+    <div
+        id="side-form"
+        class="sidenav side-form">
 
-  <!-- Agregar platillo -->
-  <div id="side-form" class="sidenav side-form">
-    <form class="add-recipe container section">
-      <h6 >Nuevo platillo</h6>
-      <div class="divider"></div>
-      <div class="input-field">
-        <input placeholder="ejemplo: Pizza" id="title" type="text" class="validate">
-        <label for="title">Nombre</label>
-      </div>
-      <div class="input-field">
-        <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate">
-        <label for="ingredients">Ingredientes</label>
-      </div>
-      <div class="input-field center">
-        <button id="btnAgregarPlatillo" class="btn-small">Agregar</button>
-      </div>
-    </form>
-  </div>
+        <form
+            class="add-recipe container section">
 
-<script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
-  </script>
+            <h6>
+                Nuevo platillo
+            </h6>
 
-   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
-  </script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyBsUYDqMEWpLeBiokAxzW18XGrkour_HYk",
-    authDomain: "ubereatsemma-9513f.firebaseapp.com",
-    projectId: "ubereatsemma-9513f",
-    storageBucket: "ubereatsemma-9513f.firebasestorage.app",
-    messagingSenderId: "624194369546",
-    appId: "1:624194369546:web:bed3faea036d94c925c7f3",
-  
-  };
+            <div class="divider"></div>
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
 
-  
-</script>
-  <script src="/js/index.js"></script>
-  <script src="/js/db.js"></script>
+            <div class="input-field">
+
+                <input
+                    placeholder="Ejemplo: Pizza"
+                    id="title"
+                    type="text"
+                    class="validate">
+
+                <label for="title">
+                    Nombre
+                </label>
+
+            </div>
+
+
+            <div class="input-field">
+
+                <input
+                    placeholder="Ejemplo: queso, tomate, pepperoni"
+                    id="ingredients"
+                    type="text"
+                    class="validate">
+
+                <label for="ingredients">
+                    Ingredientes
+                </label>
+
+            </div>
+
+
+            <div class="input-field center">
+
+                <button
+                    id="btnAgregarPlatillo"
+                    type="submit"
+                    class="btn-small">
+
+                    Agregar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-storage.js"></script>
+
+    <script>
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyBsUYDqMEWpLeBiokAxzW18XGrkour_HYk",
+
+            authDomain:
+                "ubereatsemma-9513f.firebaseapp.com",
+
+            projectId:
+                "ubereatsemma-9513f",
+
+            storageBucket:
+                "ubereatsemma-9513f.firebasestorage.app",
+
+            messagingSenderId:
+                "624194369546",
+
+            appId:
+                "1:624194369546:web:bed3faea036d94c925c7f3"
+
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const db =
+            firebase.firestore();
+
+        const storage =
+            firebase.storage();
+
+    </script>
+
+    <script src="js/db.js"></script>
+
+    <script src="js/index.js"></script>
+
 </body>
+
 </html>
