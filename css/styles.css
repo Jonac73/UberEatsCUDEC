@@ -1,135 +1,487 @@
-/* colours */
-:root{
-  --primary: #FFE9D2;
-  --secondary: #FFE1C4;
-  --title: #FF8816;
+
+* {
+    box-sizing: border-box;
 }
 
-/* layout styles */
-nav{
-  background: var(--primary);
-  border-bottom: 10px solid var(--secondary);
-}
-nav a{
-  text-transform: uppercase;
-  color: var(--title);
-}
-nav a span{
-  font-weight: bold;
-}
-nav .sidenav-trigger{
-  margin: 0;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
 }
 
-/* recipe styles */
-.recipes{
-  margin-top: 20px;
-}
-.card-panel.recipe{
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0px 1px 3px rgba(90,90,90,0.1);
-  display: grid;
-  grid-template-columns: 2fr 6fr 1fr;
-  grid-template-areas: "image details delete";
-  position: relative;
-}
-.recipe img{
-  grid-area: image;
-  max-width: 60px;
-}
-.recipe-details{
-  grid-area: details;
-  margin-top: 6px;
-}
-.recipe-delete{
-  grid-area: delete;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
-.recipe-delete i{
-  font-size: 18px;
-}
-.recipe-title{
-  font-weight: bold;
-}
-.recipe-ingredients{
-  font-size: 0.8em;
+body {
+    background: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #424242;
 }
 
-/* form-styles */
-.add-btn{
-  background: var(--title) !important;
-}
-input{
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-}
-.side-form button{
-  background: var(--title);
-  box-shadow: 1px 1px 3px rgba(90,90,90,0.2);
-}
-form .input-field{
-  margin-top: 30px;
+nav {
+    background: #ffffff !important;
+    color: #424242;
+    height: 64px;
+    line-height: 64px;
+    border-bottom: 1px solid #eeeeee;
 }
 
-
-.about-container {
-    max-width: 700px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+nav .nav-wrapper {
+    width: 92%;
+    max-width: 1100px;
 }
 
-.about-container .card-panel {
+nav a {
+    color: #ff5722 !important;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+nav .material-icons {
+    color: #424242;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.sidenav {
+    background: #ffffff;
+}
+
+.sidenav .subheader {
+    color: #ff5722;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sidenav li > a {
+    color: #424242;
+}
+
+.sidenav li > a .material-icons {
+    color: #ff5722;
+}
+
+main {
+    padding-top: 15px;
+    padding-bottom: 100px;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+}
+
+.recipes {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.pedido-panel {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.pedido-panel .card-panel {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    margin: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.pedido-panel h5 {
+    color: #333333;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.pedido-seleccionado {
+    background: #fafafa;
+    border: 1px solid #eeeeee;
     border-radius: 12px;
-    padding: 35px;
+    padding: 12px;
+    margin-bottom: 20px;
 }
 
-.app-logo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--primary);
+.pedido-seleccionado p {
+    margin: 8px 0;
 }
 
-.app-logo i {
-    font-size: 55px;
-    color: var(--title);
+.input-field {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.app-name {
-    color: var(--title);
-    font-weight: bold;
+.input-field input[type="text"] {
+    border-bottom: 1px solid #bdbdbd;
 }
 
-.version {
-    color: #777;
-    font-size: 0.9rem;
+.input-field input[type="text"]:focus {
+    border-bottom: 2px solid #ff5722 !important;
+    box-shadow: 0 1px 0 0 #ff5722 !important;
 }
 
-.about-container h6 {
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-weight: bold;
+.input-field input[type="text"]:focus + label {
+    color: #ff5722 !important;
+}
+
+.btn,
+.btn-large,
+.btn-small {
+    background-color: #ff5722 !important;
+    border-radius: 10px;
+    font-weight: 600;
+    text-transform: none;
+    box-shadow: 0 3px 8px rgba(255, 87, 34, 0.25);
+}
+
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
+    background-color: #f4511e !important;
+    box-shadow: 0 5px 12px rgba(255, 87, 34, 0.3);
+}
+
+.btn:active,
+.btn-large:active,
+.btn-small:active {
+    transform: scale(0.98);
+}
+
+.btn-large {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn i {
+    vertical-align: middle;
+}
+
+#btnUbicacion {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: auto;
+    min-width: 220px;
+}
+
+#btnUbicacion .material-icons {
+    font-size: 20px;
+}
+
+#ubicacionTexto {
+    background: #f7f7f7;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0 15px 0;
+    font-size: 14px;
+}
+
+.mapa-container {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #e5e5e5;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+#mapa {
+    width: 100%;
+    height: 450px;
+    min-height: 350px;
+    background: #e5e5e5;
+    z-index: 1;
+}
+
+
+.leaflet-control-zoom {
+    border: none !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18) !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+    width: 38px !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    background: #ffffff !important;
+    color: #424242 !important;
+    border: none !important;
+    font-size: 20px !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: #f5f5f5 !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 9px !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-radius: 5px 0 0 0;
+}
+
+.foto-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#fotoPedido {
+    display: none;
+}
+
+.foto-container label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.preview-foto {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    max-height: 400px;
+    object-fit: cover;
+    margin: 20px auto 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.estado-pedido {
+    min-height: 25px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.add-btn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background-color: #ff5722 !important;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.add-btn:hover {
+    background-color: #f4511e !important;
+}
+
+.side-form {
+    background: #ffffff;
+}
+
+.side-form h6 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff5722;
+    margin-bottom: 20px;
+}
+
+.add-recipe {
+    padding-top: 30px;
+}
+
+.add-recipe .btn-small {
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        height: 60px;
+        line-height: 60px;
+    }
+
+    nav .nav-wrapper {
+        width: 94%;
+    }
+
+    nav a {
+        font-size: 21px;
+    }
+
+    main {
+        padding-top: 10px;
+    }
+
+    .pedido-panel .card-panel {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    #mapa {
+        height: 50vh;
+        min-height: 350px;
+    }
+
 }
 
 @media (max-width: 600px) {
 
-    .about-container {
-        width: 94%;
-        margin-top: 25px;
+    body {
+        background: #f5f5f5;
+        overflow-x: hidden;
     }
 
-    .about-container .card-panel {
-        padding: 25px 18px;
+    nav {
+        height: 56px;
+        line-height: 56px;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+    }
+
+    nav .nav-wrapper {
+        width: 94%;
+    }
+
+    nav a {
+        font-size: 20px;
+    }
+
+    nav .material-icons {
+        font-size: 27px;
+    }
+
+    main {
+        padding-top: 5px;
+        padding-bottom: 90px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .pedido-panel {
+        width: 94%;
+        margin-top: 10px;
+    }
+
+    .pedido-panel .card-panel {
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .pedido-panel h5 {
+        font-size: 21px;
+        margin-bottom: 18px;
+    }
+
+
+    /* Mapa */
+
+    .mapa-container {
+        width: 100%;
+        margin: 15px 0;
+        border-radius: 16px;
+    }
+
+    #mapa {
+        width: 100%;
+        height: 55vh;
+        min-height: 350px;
+        max-height: 600px;
+    }
+
+
+    #btnUbicacion {
+        width: 100%;
+        min-width: 0;
+        height: 48px;
+        line-height: 48px;
+        font-size: 14px;
+    }
+
+    .input-field {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .input-field input {
+        font-size: 16px !important;
+    }
+
+    .btn-large {
+        height: 52px;
+        line-height: 52px;
+        font-size: 15px;
+    }
+
+    .foto-container .btn {
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .preview-foto {
+        max-height: 300px;
+        border-radius: 12px;
+    }
+    .add-btn {
+        right: 18px;
+        bottom: 18px;
+    }
+
+    .leaflet-control-zoom {
+        margin-right: 10px !important;
+        margin-top: 10px !important;
+    }
+
+    .leaflet-control-zoom a {
+        width: 42px !important;
+        height: 42px !important;
+        line-height: 42px !important;
+    }
+
+    .leaflet-control-attribution {
+        font-size: 8px !important;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    nav a {
+        font-size: 18px;
+    }
+
+    .pedido-panel .card-panel {
+        padding: 12px;
+    }
+
+    #mapa {
+        height: 50vh;
+        min-height: 320px;
+    }
+
+    .pedido-panel h5 {
+        font-size: 19px;
+    }
+
+}
+
+.btn,
+.btn-large,
+.btn-small,
+.add-btn {
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
+}
+@media (hover: none) and (pointer: coarse) {
+
+    .btn,
+    .btn-large,
+    .btn-small {
+        min-height: 46px;
+    }
+
+    .leaflet-control-zoom a {
+        min-width: 42px;
+        min-height: 42px;
     }
 
 }
